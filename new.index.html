@@ -1,0 +1,19 @@
+<script>
+  (function (d, t) {
+    var g = document.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+    g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+    g.defer = true;
+    g.async = true;
+    s.parentNode.insertBefore(g, s);
+    g.onload = function () {
+      window.vapiSDK.run({
+        apiKey: "e82d2f13-8b4f-4826-a8c9-986a4d62aecc",
+        assistant: "9cd26fc5-2249-40c1-8dfb-61b15c0038ff",
+        config: {
+          position: "bottom-right",
+        }
+      });
+    }
+  })(document, "script");
+</script>

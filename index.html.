@@ -1,46 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Voice Assistant Demo</title>
-    
-    <!-- Corrected Official Vapi Web Widget Script -->
-    <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async type="text/javascript"></script>
-    
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f7f6;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-        }
-        .container { max-width: 400px; }
-        h1 { font-size: 26px; margin-bottom: 10px; }
-        p { color: #666; font-size: 16px; line-height: 1.5; }
-    </style>
+    <title>Plumbing AI Agent</title>
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>AI Voice Assistant Demo</h1>
-        <p>Look for the microphone circle icon in the bottom right corner of your screen to begin your conversation!</p>
-    </div>
+    <h1>Plumbing AI Agent</h1>
 
-    <!-- Active Vapi Widget Custom Element -->
-    <vapi-widget 
-        public-key="e82d2f13-8b4f-4826-a8c9-986a4d62aecc" 
-        assistant-id="9cd26fc5-2249-40c1-8dfb-61b15c0038ff" 
-        mode="voice" 
-        theme="light">
-    </vapi-widget>
+    <p>Speak with our AI plumbing assistant.</p>
+
+    <script>
+        var vapiInstance = null;
+
+        const assistant = "9cd26fc5-2249-40c1-8dfb-61b15c0038ff";
+        const apiKey = "e82d2f13-8b4f-4826-a8c9-986a4d62aecc";
+
+        const buttonConfig = {
+            position: "bottom-right",
+            offset: "40px",
+            width: "60px",
+            height: "60px",
+
+            idle: {
+                color: "#000000",
+                type: "pill",
+                title: "Call AI Agent",
+                subtitle: "Talk to our AI assistant"
+            },
+
+            loading: {
+                color: "#000000",
+                type: "pill",
+                title: "Connecting..."
+            },
+
+            active: {
+                color: "#ff0000",
+                type: "pill",
+                title: "End Call",
+                subtitle: "Click to end"
+            }
+        };
+
+        (function (d, t) {
+            var g = d.createElement(t);
+            var s = d.getElementsByTagName(t)[0];
+
+            g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+
+            g.defer = true;
+            g.async = true;
+
+            s.parentNode.insertBefore(g, s);
+
+            g.onload = function () {
+
+                vapiInstance = window.vapiSDK.run({
+                    apiKey: apiKey,
+                    assistant: assistant,
+                    config: buttonConfig
+                });
+
+            };
+
+        })(document, "script");
+    </script>
 
 </body>
 </html>

@@ -1,19 +1,75 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Your Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plumbing AI Agent</title>
 </head>
+
 <body>
-    <!-- Your website content -->
-    
-    <!-- Add Vapi Widget -->
-    <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async type="text/javascript"></script>
-    
-    <vapi-widget
-      public-key="e82d2f13-8b4f-4826-a8c9-986a4d62aecc"
-      assistant-id="9cd26fc5-2249-40c1-8dfb-61b15c0038ff"
-      mode="voice"
-      theme="light"
-    ></vapi-widget>
+
+    <h1>Plumbing AI Agent</h1>
+    <p>Speak with our AI plumbing assistant.</p>
+
+    <!-- Vapi Voice Call Button -->
+    <script>
+        var vapiInstance = null;
+
+        const assistant = "9cd26fc5-2249-40c1-8dfb-61b15c0038ff";
+        const apiKey = "e82d2f13-8b4f-4826-a8c9-986a4d62aecc";
+
+        const buttonConfig = {
+            position: "bottom-right",
+            offset: "40px",
+            width: "60px",
+            height: "60px",
+
+            idle: {
+                color: "#000000",
+                type: "pill",
+                title: "Call AI Agent",
+                subtitle: "Talk to our AI assistant",
+                icon: "https://unpkg.com/lucide-static@latest/icons/phone.svg"
+            },
+
+            loading: {
+                color: "#000000",
+                type: "pill",
+                title: "Connecting..."
+            },
+
+            active: {
+                color: "#ff0000",
+                type: "pill",
+                title: "End Call",
+                subtitle: "Click to end",
+                icon: "https://unpkg.com/lucide-static@latest/icons/phone-off.svg"
+            }
+        };
+
+        (function (d, t) {
+            var g = document.createElement(t);
+            var s = d.getElementsByTagName(t)[0];
+
+            g.src =
+                "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+
+            g.defer = true;
+            g.async = true;
+
+            s.parentNode.insertBefore(g, s);
+
+            g.onload = function () {
+                vapiInstance = window.vapiSDK.run({
+                    apiKey: apiKey,
+                    assistant: assistant,
+                    config: buttonConfig
+                });
+            };
+        })(document, "script");
+    </script>
+
 </body>
 </html>
+```

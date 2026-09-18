@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Assistant Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 { margin-bottom: 10px; font-size: 24px; }
+        p { color: #666; max-width: 400px; margin-top: 0; margin-bottom: 30px; font-size: 16px; }
+    </style>
+</head>
+<body>
+
+    <h1>AI Voice Assistant Demo</h1>
+    <p>Click the chat button in the bottom right corner of your screen and tap the microphone icon to start speaking.</p>
+
+    <!-- Vapi Widget Element -->
+    <vapi-widget 
+        public-key="e82d2f13-8b4f-4826-a8c9-986a4d62aecc" 
+        assistant-id="9cd26fc5-2249-40c1-8dfb-61b15c0038ff" 
+        mode="voice" 
+        size="compact">
+    </vapi-widget>
+
+    <!-- Vapi Script Library -->
+    <script src="https://amazonaws.com"></script>
+
+</body>
+</html>

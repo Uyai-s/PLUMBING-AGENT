@@ -1,74 +1,116 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plumbing AI Agent</title>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Talk to Sam | Flow Plumbing & HVAC</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #172033;
+      background: linear-gradient(135deg, #eaf7ff, #f7fbff);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 620px;
+      padding: 48px 30px;
+      text-align: center;
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 18px 50px rgba(0, 56, 96, 0.15);
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      color: #075985;
+      font-size: clamp(2rem, 6vw, 3.3rem);
+    }
+
+    p {
+      max-width: 480px;
+      margin: 0 auto 14px;
+      color: #475569;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .notice {
+      margin-top: 24px;
+      padding: 14px;
+      color: #075985;
+      background: #e0f2fe;
+      border-radius: 12px;
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 
 <body>
+  <main class="card">
+    <h1>Talk to Sam</h1>
 
-    <h1>Plumbing AI Agent</h1>
-    <p>Speak with our AI plumbing assistant.</p>
+    <p>
+      Sam is the virtual receptionist for Flow Plumbing &amp; HVAC.
+    </p>
 
-    <!-- Vapi Voice Call Button -->
-    <script>
-        var vapiInstance = null;
+    <p>
+      Select the call button in the bottom-right corner to start.
+    </p>
 
-        const assistant = "9cd26fc5-2249-40c1-8dfb-61b15c0038ff";
-        const apiKey = "e82d2f13-8b4f-4826-a8c9-986a4d62aecc";
+    <div class="notice">
+      When your browser asks for permission, select
+      <strong>Allow microphone</strong>.
+    </div>
+  </main>
 
-        const buttonConfig = {
-            position: "bottom-right",
-            offset: "40px",
-            width: "60px",
-            height: "60px",
+  <script>
+    var vapiInstance = null;
 
-            idle: {
-                color: "#000000",
-                type: "pill",
-                title: "Call AI Agent",
-                subtitle: "Talk to our AI assistant",
-                icon: "https://unpkg.com/lucide-static@latest/icons/phone.svg"
-            },
+    const assistant = "9cd26fc5-2249-40c1-8dfb-61b15c0038ff";
+    const apiKey = "e82d2f13-8b4f-4826-a8c9-986a4d62aecc";
 
-            loading: {
-                color: "#000000",
-                type: "pill",
-                title: "Connecting..."
-            },
+    const buttonConfig = {
+      position: "bottom-right"
+    };
 
-            active: {
-                color: "#ff0000",
-                type: "pill",
-                title: "End Call",
-                subtitle: "Click to end",
-                icon: "https://unpkg.com/lucide-static@latest/icons/phone-off.svg"
-            }
-        };
+    (function (documentObject, tagName) {
+      const script = documentObject.createElement(tagName);
+      const firstScript =
+        documentObject.getElementsByTagName(tagName)[0];
 
-        (function (d, t) {
-            var g = document.createElement(t);
-            var s = d.getElementsByTagName(t)[0];
+      script.src =
+        "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
 
-            g.src =
-                "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+      script.defer = true;
+      script.async = true;
 
-            g.defer = true;
-            g.async = true;
+      firstScript.parentNode.insertBefore(script, firstScript);
 
-            s.parentNode.insertBefore(g, s);
-
-            g.onload = function () {
-                vapiInstance = window.vapiSDK.run({
-                    apiKey: apiKey,
-                    assistant: assistant,
-                    config: buttonConfig
-                });
-            };
-        })(document, "script");
-    </script>
-
+      script.onload = function () {
+        vapiInstance = window.vapiSDK.run({
+          apiKey: apiKey,
+          assistant: assistant,
+          config: buttonConfig
+        });
+      };
+    })(document, "script");
+  </script>
 </body>
 </html>

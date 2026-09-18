@@ -1,6 +1,6 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +10,9 @@
 <body>
 
     <h1>Plumbing AI Agent</h1>
-
     <p>Speak with our AI plumbing assistant.</p>
 
+    <!-- Vapi Voice Call Button -->
     <script>
         var vapiInstance = null;
 
@@ -29,7 +29,8 @@
                 color: "#000000",
                 type: "pill",
                 title: "Call AI Agent",
-                subtitle: "Talk to our AI assistant"
+                subtitle: "Talk to our AI assistant",
+                icon: "https://unpkg.com/lucide-static@latest/icons/phone.svg"
             },
 
             loading: {
@@ -42,15 +43,17 @@
                 color: "#ff0000",
                 type: "pill",
                 title: "End Call",
-                subtitle: "Click to end"
+                subtitle: "Click to end",
+                icon: "https://unpkg.com/lucide-static@latest/icons/phone-off.svg"
             }
         };
 
         (function (d, t) {
-            var g = d.createElement(t);
+            var g = document.createElement(t);
             var s = d.getElementsByTagName(t)[0];
 
-            g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+            g.src =
+                "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
 
             g.defer = true;
             g.async = true;
@@ -58,15 +61,12 @@
             s.parentNode.insertBefore(g, s);
 
             g.onload = function () {
-
                 vapiInstance = window.vapiSDK.run({
                     apiKey: apiKey,
                     assistant: assistant,
                     config: buttonConfig
                 });
-
             };
-
         })(document, "script");
     </script>
 

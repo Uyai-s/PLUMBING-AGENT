@@ -2,127 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Speak with Sam, the virtual assistant for All Stars AC, Plumbing and Electricals." />
-  <meta name="theme-color" content="#0b1736" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>Talk to Sam | All Stars AC, Plumbing and Electricals</title>
 
   <style>
-    :root {
-      --navy: #0b1736;
-      --blue: #1769e0;
-      --blue-dark: #0f4eae;
-      --red: #d83a3a;
-      --red-dark: #ae2626;
-      --green: #15945b;
-      --white: #ffffff;
-      --background: #f3f7fc;
-      --text: #15213b;
-      --muted: #65718a;
-      --border: #dce5f1;
-      --shadow: 0 20px 55px rgba(11, 23, 54, 0.16);
-    }
-
     * {
       box-sizing: border-box;
     }
 
-    html,
     body {
-      min-height: 100%;
       margin: 0;
-    }
-
-    body {
+      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 24px;
+      font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top left, #dbeafe 0, transparent 35%),
-        radial-gradient(circle at bottom right, #fee2e2 0, transparent 30%),
-        var(--background);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-        BlinkMacSystemFont, "Segoe UI", sans-serif;
+        linear-gradient(
+          120deg,
+          #edf5ff 0%,
+          #f7f9fc 55%,
+          #fff0f0 100%
+        );
+      color: #0f172a;
     }
 
     .card {
-      width: min(100%, 620px);
+      width: 100%;
+      max-width: 620px;
       overflow: hidden;
-      border: 1px solid rgba(220, 229, 241, 0.9);
+      background: white;
       border-radius: 28px;
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: var(--shadow);
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.15);
     }
 
     .header {
-      padding: 38px 30px 32px;
-      background: linear-gradient(135deg, var(--navy), #173b7a);
-      color: var(--white);
+      padding: 38px 24px 32px;
       text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #0f1f46, #1d4589);
     }
 
     .logo {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       width: 76px;
       height: 76px;
-      margin-bottom: 18px;
-      border: 3px solid rgba(255, 255, 255, 0.9);
+      margin: 0 auto 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 3px solid white;
       border-radius: 50%;
-      background: linear-gradient(145deg, var(--blue), var(--red));
+      background: linear-gradient(135deg, #3374e6, #d33758);
       font-size: 25px;
-      font-weight: 900;
-      letter-spacing: -1px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      font-weight: 800;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(26px, 5vw, 38px);
-      line-height: 1.1;
+      font-size: 40px;
     }
 
-    .company {
-      margin: 12px auto 0;
-      max-width: 480px;
-      color: #dce9ff;
+    .subtitle {
+      margin: 12px 0 0;
       font-size: 17px;
-      line-height: 1.5;
     }
 
     .content {
-      padding: 32px;
+      padding: 34px 32px 38px;
       text-align: center;
     }
 
     .description {
-      max-width: 500px;
       margin: 0 auto 24px;
-      color: var(--muted);
+      max-width: 500px;
+      color: #526482;
       font-size: 16px;
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
-    .status-box {
+    .status {
+      min-height: 56px;
+      margin-bottom: 24px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      min-height: 54px;
-      margin: 0 0 24px;
-      padding: 14px 18px;
-      border: 1px solid var(--border);
+      align-items: center;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid #d4deed;
       border-radius: 14px;
-      background: #f8fbff;
+      background: #f8fafc;
       font-weight: 700;
     }
 
     .status-dot {
       width: 11px;
       height: 11px;
-      margin-right: 10px;
+      flex: 0 0 auto;
       border-radius: 50%;
       background: #94a3b8;
     }
@@ -133,109 +114,90 @@
     }
 
     .status-dot.connected {
-      background: var(--green);
-      animation: pulse 1.4s infinite;
-    }
-
-    .status-dot.speaking {
-      background: var(--blue);
-      animation: pulse 0.65s infinite;
+      background: #22c55e;
+      animation: pulse 1s infinite;
     }
 
     .status-dot.error {
-      background: var(--red);
+      background: #ef4444;
     }
 
     @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+
       50% {
-        opacity: 0.45;
-        transform: scale(0.8);
+        opacity: 0.35;
       }
     }
 
-    .controls {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    button {
+    #callButton {
       width: 100%;
       min-height: 58px;
-      padding: 15px 22px;
+      padding: 14px 20px;
       border: 0;
       border-radius: 14px;
-      color: var(--white);
-      font: inherit;
-      font-size: 17px;
-      font-weight: 800;
+      background: #216be0;
+      color: white;
       cursor: pointer;
+      font-size: 18px;
+      font-weight: 800;
       transition:
-        transform 150ms ease,
-        opacity 150ms ease,
-        background 150ms ease;
+        transform 0.15s ease,
+        background 0.15s ease;
     }
 
-    button:hover:not(:disabled) {
-      transform: translateY(-2px);
+    #callButton:hover {
+      background: #175ac4;
+      transform: translateY(-1px);
     }
 
-    button:active:not(:disabled) {
-      transform: translateY(0);
+    #callButton:disabled {
+      cursor: wait;
+      opacity: 0.65;
+      transform: none;
     }
 
-    button:disabled {
-      cursor: not-allowed;
-      opacity: 0.55;
+    #callButton.end-call {
+      background: #dc2626;
     }
 
-    #startButton {
-      background: var(--blue);
-    }
-
-    #startButton:hover:not(:disabled) {
-      background: var(--blue-dark);
-    }
-
-    #endButton {
-      display: none;
-      background: var(--red);
-    }
-
-    #endButton:hover:not(:disabled) {
-      background: var(--red-dark);
+    #callButton.end-call:hover {
+      background: #b91c1c;
     }
 
     .notice {
-      margin: 22px 0 0;
-      color: var(--muted);
+      margin: 22px auto 0;
+      max-width: 520px;
+      color: #65748b;
       font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .error-message {
-      display: none;
-      margin-top: 18px;
-      padding: 13px;
-      border: 1px solid #fecaca;
-      border-radius: 12px;
-      background: #fef2f2;
-      color: #991b1b;
-      font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .footer {
-      padding: 18px 24px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 13px;
+      padding: 20px;
+      border-top: 1px solid #e2e8f0;
+      color: #62728d;
       text-align: center;
+      font-size: 13px;
     }
 
-    @media (min-width: 500px) {
-      .controls.active {
-        grid-template-columns: 1fr 1fr;
+    @media (max-width: 600px) {
+      body {
+        padding: 14px;
+      }
+
+      .card {
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .content {
+        padding: 28px 20px 32px;
       }
     }
   </style>
@@ -243,331 +205,181 @@
 
 <body>
   <main class="card">
-
     <header class="header">
-      <div class="logo" aria-hidden="true">AS</div>
+      <div class="logo">AS</div>
 
       <h1>Talk to Sam</h1>
 
-      <p class="company">
+      <p class="subtitle">
         All Stars AC, Plumbing and Electricals
       </p>
     </header>
 
     <section class="content">
-
       <p class="description">
-        Start a live voice conversation with Sam about your AC, plumbing,
-        heating, or electrical needs.
+        Start a live voice conversation with Sam about your AC,
+        plumbing, heating, or electrical needs.
       </p>
 
-      <div
-        id="statusBox"
-        class="status-box"
-        role="status"
-        aria-live="polite"
-      >
+      <div class="status" aria-live="polite">
         <span id="statusDot" class="status-dot"></span>
         <span id="statusText">Ready to talk?</span>
       </div>
 
-      <div id="controls" class="controls">
-
-        <button id="startButton" type="button">
-          🎙️ Start Talking to Sam
-        </button>
-
-        <button id="endButton" type="button">
-          End Conversation
-        </button>
-
-      </div>
-
-      <div
-        id="errorMessage"
-        class="error-message"
-        role="alert"
-      ></div>
+      <button id="callButton" type="button">
+        🎙 Start Talking to Sam
+      </button>
 
       <p class="notice">
-        Your browser will request microphone access. Please allow it so Sam
-        can hear you. Usage of this voice assistant may incur charges for
-        the owner of this page.
+        Your browser will request microphone access. Select
+        <strong>Allow</strong> so Sam can hear you. Please also make
+        sure your device volume is turned on.
       </p>
-
     </section>
 
     <footer class="footer">
-      © <span id="year"></span> All Stars AC, Plumbing and Electricals
+      © All Stars AC, Plumbing and Electricals
     </footer>
-
   </main>
 
-  <!-- VAPI WEB SDK -->
   <script type="module">
-
-    import Vapi from "https://cdn.jsdelivr.net/npm/@vapi-ai/web/+esm";
+    import Vapi from "https://esm.sh/@vapi-ai/web";
 
     const PUBLIC_KEY =
-      "c7e912a3-d401-4c55-8e18-1eb3eb135a0e";
+      "309f8912-062f-4b21-b0f8-6b99acc0b38d";
 
     const ASSISTANT_ID =
       "9cd26fc5-2249-40c1-8dfb-61b15c0038ff";
 
+    const callButton = document.getElementById("callButton");
+    const statusText = document.getElementById("statusText");
+    const statusDot = document.getElementById("statusDot");
 
-    const startButton =
-      document.getElementById("startButton");
-
-    const endButton =
-      document.getElementById("endButton");
-
-    const controls =
-      document.getElementById("controls");
-
-    const statusText =
-      document.getElementById("statusText");
-
-    const statusDot =
-      document.getElementById("statusDot");
-
-    const errorMessage =
-      document.getElementById("errorMessage");
-
-
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-
-
-    // Create Vapi connection
     const vapi = new Vapi(PUBLIC_KEY);
-
 
     let callActive = false;
     let callStarting = false;
 
-
-    function updateStatus(message, state = "") {
-
+    function updateStatus(message, state = "ready") {
       statusText.textContent = message;
 
-      statusDot.className =
-        `status-dot ${state}`.trim();
+      statusDot.className = "status-dot";
 
+      if (state === "connecting") {
+        statusDot.classList.add("connecting");
+      }
+
+      if (state === "connected") {
+        statusDot.classList.add("connected");
+      }
+
+      if (state === "error") {
+        statusDot.classList.add("error");
+      }
     }
 
+    function resetButton() {
+      callActive = false;
+      callStarting = false;
+      callButton.disabled = false;
+      callButton.classList.remove("end-call");
+      callButton.textContent = "🎙 Start Talking to Sam";
+    }
 
-    function showError(message) {
+    vapi.on("call-start", () => {
+      callActive = true;
+      callStarting = false;
 
-      errorMessage.textContent = message;
+      callButton.disabled = false;
+      callButton.classList.add("end-call");
+      callButton.textContent = "⏹ End Call";
 
-      errorMessage.style.display = "block";
+      updateStatus("Connected — Sam will speak shortly", "connected");
+    });
+
+    vapi.on("speech-start", () => {
+      updateStatus("Sam is speaking…", "connected");
+    });
+
+    vapi.on("speech-end", () => {
+      updateStatus("Listening — you can speak now", "connected");
+    });
+
+    vapi.on("call-end", () => {
+      updateStatus("Call ended. Click the button to call again.");
+      resetButton();
+    });
+
+    vapi.on("error", (error) => {
+      console.error("Vapi error:", error);
 
       updateStatus(
-        "Unable to start the conversation",
+        "Connection failed. Check microphone access and try again.",
         "error"
       );
 
-    }
+      resetButton();
+    });
 
+    callButton.addEventListener("click", async (event) => {
+      event.preventDefault();
 
-    function clearError() {
-
-      errorMessage.textContent = "";
-
-      errorMessage.style.display = "none";
-
-    }
-
-
-    function showActiveControls() {
-
-      startButton.style.display = "none";
-
-      endButton.style.display = "block";
-
-      controls.classList.add("active");
-
-    }
-
-
-    function showInactiveControls() {
-
-      startButton.style.display = "block";
-
-      endButton.style.display = "none";
-
-      controls.classList.remove("active");
-
-    }
-
-
-    // START CALL
-    startButton.addEventListener("click", async () => {
-
-      if (callActive || callStarting) {
+      if (callActive) {
+        updateStatus("Ending call…", "connecting");
+        callButton.disabled = true;
+        vapi.stop();
         return;
       }
 
-      clearError();
+      if (callStarting) {
+        return;
+      }
 
       callStarting = true;
+      callButton.disabled = true;
 
-      startButton.disabled = true;
-
-      updateStatus(
-        "Connecting to Sam...",
-        "connecting"
-      );
-
+      updateStatus("Connecting to Sam…", "connecting");
 
       try {
+        if (
+          !window.isSecureContext ||
+          !navigator.mediaDevices ||
+          !navigator.mediaDevices.getUserMedia
+        ) {
+          throw new Error(
+            "Microphone access requires HTTPS or localhost."
+          );
+        }
+
+        /*
+          Request permission first so any microphone problem is shown
+          before opening the Vapi call.
+        */
+        const permissionStream =
+          await navigator.mediaDevices.getUserMedia({
+            audio: true
+          });
+
+        permissionStream
+          .getTracks()
+          .forEach((track) => track.stop());
 
         await vapi.start(ASSISTANT_ID);
+      } catch (error) {
+        console.error("Unable to start Vapi call:", error);
 
-      } catch (err) {
+        let message =
+          "Unable to connect. Allow microphone access and try again.";
 
-        console.error("Vapi start error:", err);
+        if (error?.name === "NotAllowedError") {
+          message =
+            "Microphone access was blocked. Allow it in your browser settings.";
+        }
 
-        showError(
-          err?.message ||
-          "Microphone access was denied or the voice connection failed."
-        );
-
-        startButton.disabled = false;
-
-        callStarting = false;
-
+        updateStatus(message, "error");
+        resetButton();
       }
-
     });
-
-
-    // END CALL
-    endButton.addEventListener("click", () => {
-
-      if (!callActive) {
-        return;
-      }
-
-      endButton.disabled = true;
-
-      updateStatus(
-        "Disconnecting...",
-        "connecting"
-      );
-
-      vapi.stop();
-
-    });
-
-
-    // CALL STARTED
-    vapi.on("call-start", () => {
-
-      console.log("Vapi call started");
-
-      callActive = true;
-
-      callStarting = false;
-
-      startButton.disabled = false;
-
-      endButton.disabled = false;
-
-      showActiveControls();
-
-      updateStatus(
-        "Connected with Sam",
-        "connected"
-      );
-
-    });
-
-
-    // CALL ENDED
-    vapi.on("call-end", () => {
-
-      console.log("Vapi call ended");
-
-      callActive = false;
-
-      callStarting = false;
-
-      startButton.disabled = false;
-
-      endButton.disabled = false;
-
-      showInactiveControls();
-
-      updateStatus(
-        "Ready to talk?",
-        ""
-      );
-
-    });
-
-
-    // SAM STARTED SPEAKING
-    vapi.on("speech-start", () => {
-
-      if (callActive) {
-
-        updateStatus(
-          "Sam is speaking...",
-          "speaking"
-        );
-
-      }
-
-    });
-
-
-    // SAM STOPPED SPEAKING
-    vapi.on("speech-end", () => {
-
-      if (callActive) {
-
-        updateStatus(
-          "Sam is listening...",
-          "connected"
-        );
-
-      }
-
-    });
-
-
-    // VAPI ERROR
-    vapi.on("error", (err) => {
-
-      console.error("Vapi error:", err);
-
-      showError(
-        err?.message ||
-        "An unexpected voice connection error occurred."
-      );
-
-      callActive = false;
-
-      callStarting = false;
-
-      startButton.disabled = false;
-
-      endButton.disabled = false;
-
-      showInactiveControls();
-
-    });
-
-
-    // DEBUG MESSAGE
-    vapi.on("message", (message) => {
-
-      console.log("Vapi message:", message);
-
-    });
-
   </script>
-
 </body>
 </html>
